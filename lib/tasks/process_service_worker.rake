@@ -9,7 +9,7 @@ task process_service_worker_cache: :environment do
   text_path = File.join(File.dirname(__FILE__), '../js/service_worker_client.js')
   text = File.read(text_path)
 
-  new_file = File.open("#{Rails.root}/public/serviceWorker", 'w')
+  new_file = File.open("#{Rails.root}/public/serviceWorker.js", 'w')
 
   text.each_line do |line|
     if (line['application.css'])
