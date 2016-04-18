@@ -1,5 +1,8 @@
 desc 'update the caching service worker file'
 task process_service_worker: :environment do
+
+  puts 'Processing Service Worker'
+
   css_path = Rails.application.assets.find_asset('application.css').digest_path
   js_path = Rails.application.assets.find_asset('application.js').digest_path
 
