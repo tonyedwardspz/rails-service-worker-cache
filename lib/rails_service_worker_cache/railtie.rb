@@ -1,7 +1,7 @@
 require 'rails_service_worker_cache'
 require 'rails'
 
-module MyPlugin
+module RailsServiceWorkerCache
   class Railtie < Rails::Railtie
     railtie_name :rails_service_worker_cache
 
