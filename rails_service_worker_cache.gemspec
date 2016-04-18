@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rails_service_worker_cache'
-  s.version     = '0.0.4'
+  s.version     = '0.0.5'
   s.date        = '2016-04-18'
   s.summary     = 'Drop in solution for caching assets using a service worker.'
   s.description = 'Drop in solution for caching assets using a service worker.'
