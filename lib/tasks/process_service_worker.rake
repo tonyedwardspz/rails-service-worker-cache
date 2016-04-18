@@ -3,7 +3,7 @@ task process_service_worker: :environment do
   css_path = Rails.application.assets.find_asset('application.css').digest_path
   js_path = Rails.application.assets.find_asset('application.js').digest_path
 
-  text = File.read('./app/assets/javascripts/client/cacheSW.js')
+  text = File.read(File.dirname(__FILE__) + '/js/service_worker_client.js')
   new_file = File.open('./public/serviceWorker.js', 'w')
 
   text.each_line do |line|

@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.summary     = 'Drop in solution for caching assets using a service worker.'
   s.description = 'Drop in solution for caching assets using a service worker.'
   s.authors     = ['Tony Edwards']
-  s.email       = 'tony@plymouthwebdesign.com'
-  s.files       = ["lib/rails_service_worker_cache.rb"]
+  s.email       = 'tony@plymouthsoftware.com'
+  s.files       = ['lib/rails_service_worker_cache.rb', 'lib/tasks/process_service_worker.rake']
   s.homepage    = 'http://rubygems.org/gems/rails_service_worker_cache'
   s.license     = 'MIT'
 end
