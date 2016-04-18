@@ -1,5 +1,5 @@
 desc 'update the caching service worker file'
-task process_service_worker: :environment do
+task process_service_worker_cache: :environment do
 
   puts 'Processing Service Worker'
 
@@ -23,5 +23,5 @@ end
 
 # This should trigger AFTER css /js has precompiiled
 Rake::Task['assets:precompile'].enhance do
-  Rake::Task['process_service_worker'].invoke
+  Rake::Task['process_service_worker_cache'].invoke
 end
