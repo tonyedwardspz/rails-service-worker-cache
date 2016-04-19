@@ -2,7 +2,7 @@ require 'rails'
 
 module RailsServiceWorkerCache
   module Rails
-    class Railtie < Rails::Railtie
+    class Railtie < ::Rails::Railtie
       railtie_name :rails_service_worker_cache
 
       rake_tasks do
