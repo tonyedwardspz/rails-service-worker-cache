@@ -9,15 +9,12 @@ Rake::Task['assets:precompile'].enhance do
   Rake::Task['process_service_worker_cache'].invoke
 end
 
-
-
-
+# Encapsulate creating the service worker file
 class ServiceWorker
   attr_accessor :create
 
   def initialize
     self.log_message('Initalizing object')
-
     text_path = File.join(File.dirname(__FILE__), '../js/service_worker_client.js')
     @text = File.read(text_path)
     self.create
@@ -51,9 +48,8 @@ class ServiceWorker
   end
 
   def log_message(message)
-    puts "logging"
     if RailsServiceWorkerCache.configuration.debug == true
-      Rails.logger.info "Service Worker Cache: #{message}"
+      puts "Service Worker Cache: #{message}"
     end
   end
 end
