@@ -2,25 +2,39 @@ desc 'update the caching service worker file'
 task process_service_worker_cache: :environment do
 
   puts 'Processing Service Worker'
+  puts RailsServiceWorkerCache.configuration.assets
 
-  css_path = Rails.application.assets.find_asset('application.css').digest_path
-  js_path = Rails.application.assets.find_asset('application.js').digest_path
+  ServiceWorker.create_file
+end
 
-  text_path = File.join(File.dirname(__FILE__), '../js/service_worker_client.js')
-  text = File.read(text_path)
-
-  new_file = File.open("#{Rails.root}/public/serviceWorker.js", 'w')
-
-  text.each_line do |line|
-    if (line['application.css'])
-      line = line.gsub! 'application.css', css_path
-    end
-    if (line['application.js'])
-      line = line.gsub! 'application.js', js_path
-    end
-    new_file.puts line
+class ServiceWorker
+  def initialize
+    @text_path = File.join(File.dirname(__FILE__), '../js/service_worker_client.js')
+    @text = File.read(text_path)
   end
-  new_file.close
+
+  def create_file
+    new_file = File.open("#{Rails.root}/public/serviceWorker.js", 'w')
+
+    @text.each_line do |line|
+      if (line['FILES PLACEHOLDER'])
+        new_file = insert_versioned_asset_strings(new_file)
+      else
+        new_file.puts line
+      end
+    end
+    new_file.close
+  end
+
+  def insert_versioned_asset_strings(file)
+    RailsServiceWorkerCache.configuration.assets.each_with_index do |asset|
+      file.puts "  assets/#{Rails.application.assets.find_asset(asset).digest_path}"
+
+      # if this is not the last asset, append a ,
+    end
+
+    file
+  end
 end
 
 # This should trigger AFTER css /js has precompiiled
