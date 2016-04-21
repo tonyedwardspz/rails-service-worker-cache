@@ -1,4 +1,4 @@
-# rails_service_worker_cache gem
+# service-worker-cache-rails gem
 
 NOT FOR PUBLIC USE YET. ACTIVE INITIAL DEVELOPMENT IS IN PROGRESS.
 
@@ -9,7 +9,7 @@ A drop in solution for rails to cache versioned assets on the client using servi
 
 Add this line to your application's Gemfile:
 
-    gem "rails_service_worker_cache", '~> 0.1.0', :git => "git@github.com:tonyedwardspz/rails-service-worker-cache.git"
+    gem "service-worker-cache-rails", '~> 0.1.0', :git => "git@github.com:tonyedwardspz/service-worker-cache-rails.git"
 
 And then execute:
 
@@ -40,11 +40,11 @@ The public API should not be considered stable.
 
 ## Dependencies
 
-If you're add this to a rails `4.*` project, you have everything you need.
+If you're add this to a rails `^4.*` project, you should have everything you need.
 
 ## Contributing
 
-1. Fork it ( https://github.com/<user>/<gem>/fork )
+1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

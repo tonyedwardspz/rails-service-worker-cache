@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'rails_service_worker_cache'
+  s.name        = 'service-worker-cache-rails'
   s.version     = '0.1.4'
   s.date        = '2016-04-18'
   s.summary     = 'Drop in solution for caching assets using a service worker.'
@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.authors     = ['Tony Edwards']
   s.email       = 'tony@plymouthsoftware.com'
   s.files       = Dir["{lib,public}/**/**/*"]
-  s.homepage    = 'http://rubygems.org/gems/rails_service_worker_cache'
+  s.homepage    = 'http://rubygems.org/gems/service-worker-cache-rails'
   s.license     = 'MIT'
 end
