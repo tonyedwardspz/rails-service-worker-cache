@@ -1,9 +1,9 @@
-require 'rails_service_worker_cache/rails'
-require 'rails_service_worker_cache/rails/version'
-require 'rails_service_worker_cache/rails/engine' if defined?(Rails)
-require 'rails_service_worker_cache/rails/railtie' if defined?(Rails)
+require 'service-worker-cache-rails/rails'
+require 'service-worker-cache-rails/rails/version'
+require 'service-worker-cache-rails/rails/engine' if defined?(Rails)
+require 'service-worker-cache-rails/rails/railtie' if defined?(Rails)
 
-module RailsServiceWorkerCache
+module ServiceWorkerCacheRails
   class << self
     attr_accessor :configuration
   end

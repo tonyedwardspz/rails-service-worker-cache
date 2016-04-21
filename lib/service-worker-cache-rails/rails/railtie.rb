@@ -1,6 +1,6 @@
 require 'rails'
 
-module RailsServiceWorkerCache
+module ServiceWorkerCacheRails
   module Rails
     class Railtie < ::Rails::Railtie
       railtie_name :rails_service_worker_cache

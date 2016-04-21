@@ -1,6 +1,6 @@
 require 'rails'
 
-module RailsServiceWorkerCache
+module ServiceWorkerCacheRails
   module Rails
     class Engine < ::Rails::Engine
     end
