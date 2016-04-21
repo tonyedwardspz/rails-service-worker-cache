@@ -34,8 +34,8 @@ class ServiceWorker
     self.log_message("Inserting versioned asset strings")
 
     file.puts 'var URLS_TO_CACHE = ['
-    RailsServiceWorkerCache.configuration.assets.each_with_index do | asset, i |
-      file.puts "  'assets/#{Rails.application.assets.find_asset(asset).digest_path}'#{',' if (i+1) < RailsServiceWorkerCache.configuration.assets.length}"
+    ServiceWorkerCacheRails.configuration.assets.each_with_index do | asset, i |
+      file.puts "  'assets/#{Rails.application.assets.find_asset(asset).digest_path}'#{',' if (i+1) < ServiceWorkerCacheRails.configuration.assets.length}"
     end
     file.puts '];'
     file
@@ -43,13 +43,13 @@ class ServiceWorker
 
   def insert_debug_variable(file)
     self.log_message("Setting debug status")
-    file.puts 'var DEBUG = true;' if RailsServiceWorkerCache.configuration.debug
+    file.puts 'var DEBUG = true;' if ServiceWorkerCacheRails.configuration.debug
     file
   end
 
   def insert_cache_name(file)
     self.log_message("Setting cache name")
-    file.puts "var CACHE_NAME = '#{RailsServiceWorkerCache.configuration.cache_name}';"
+    file.puts "var CACHE_NAME = '#{ServiceWorkerCacheRails.configuration.cache_name}';"
     file
   end
 
@@ -62,7 +62,7 @@ class ServiceWorker
   end
 
   def log_message(message)
-    if RailsServiceWorkerCache.configuration.debug == true
+    if ServiceWorkerCacheRails.configuration.debug == true
       puts "Service Worker Cache: #{message}"
     end
   end
