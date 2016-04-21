@@ -1,5 +1,5 @@
-module New
-  module Gem
+module RailsServiceWorkerCache
+  module Rails
     VERSION = '0.1.4'
   end
 end
