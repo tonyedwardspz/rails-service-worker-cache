@@ -33,9 +33,9 @@ class ServiceWorker
   def insert_versioned_asset_strings(file)
     self.log_message("Inserting versioned asset strings")
 
-    file.puts 'var urlsToCache = ['
+    file.puts 'var URLS_TO_CACHE = ['
     RailsServiceWorkerCache.configuration.assets.each_with_index do | asset, i |
-      file.puts "'  assets/#{Rails.application.assets.find_asset(asset).digest_path}'#{',' if (i+1) < RailsServiceWorkerCache.configuration.assets.length}"
+      file.puts "  'assets/#{Rails.application.assets.find_asset(asset).digest_path}'#{',' if (i+1) < RailsServiceWorkerCache.configuration.assets.length}"
     end
     file.puts '];'
     file
@@ -43,7 +43,7 @@ class ServiceWorker
 
   def insert_debug_variable(file)
     self.log_message("Setting debug status")
-    file.puts 'var RSWC_DEBUG = true;' if RailsServiceWorkerCache.configuration.debug
+    file.puts 'var DEBUG = true;' if RailsServiceWorkerCache.configuration.debug
     file
   end
 
