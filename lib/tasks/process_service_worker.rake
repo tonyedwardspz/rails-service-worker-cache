@@ -23,6 +23,7 @@ class ServiceWorker
   def create
     log_message('Creating file')
     new_file = File.open("#{Rails.root}/public/serviceWorker.js", 'w')
+    new_file = self.insert_debug_variable(new_file)
 
     @text.each_line do |line|
       if (line['FILES PLACEHOLDER'])
@@ -31,19 +32,21 @@ class ServiceWorker
         new_file.puts line
       end
     end
+    new_file.close
 
     self.log_message('Finished creating file')
-    new_file.close
   end
 
   def insert_versioned_asset_strings(file)
-    RailsServiceWorkerCache.configuration.assets.each_with_index do |asset|
-      self.log_message('Processing assets/#{Rails.application.assets.find_asset(asset).digest_path}"')
-      file.puts "'  assets/#{Rails.application.assets.find_asset(asset).digest_path}'"
-
-      # if this is not the last asset, append a ,
+    RailsServiceWorkerCache.configuration.assets.each_with_index do |asset, i|
+      self.log_message("Processing assets/#{Rails.application.assets.find_asset(asset).digest_path}")
+      file.puts "'  assets/#{Rails.application.assets.find_asset(asset).digest_path}'#{',' if (i+1) < RailsServiceWorkerCache.configuration.assets.length}"
     end
+    file
+  end
 
+  def insert_debug_variable(file)
+    file.puts 'var debug = true' if RailsServiceWorkerCache.configuration.debug
     file
   end
 
