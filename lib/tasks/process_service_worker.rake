@@ -55,8 +55,8 @@ class ServiceWorker
 
   def insert_service_worker(file)
     log_message('Merging service worker script')
-    text_path = File.join(File.dirname(__FILE__), '../js/service_worker_client.js')
-    text = File.read(text_path)
+    path = File.join(File.dirname(__FILE__), '../js/service_worker_client.js')
+    text = File.read(path)
     file.puts text
     file
   end
