@@ -15,9 +15,11 @@ module RailsServiceWorkerCache
 
   class Configuration
     attr_accessor :assets
+    attr_accessor :debug
 
     def initialize
       @assets = []
+      @debug = false
     end
   end
 end
