@@ -22,31 +22,33 @@ class ServiceWorker
 
   def create
     log_message('Creating file')
-    new_file = File.open("#{Rails.root}/public/serviceWorker.js", 'w')
-    new_file = self.insert_debug_variable(new_file)
 
-    @text.each_line do |line|
-      if (line['FILES PLACEHOLDER'])
-        new_file = self.insert_versioned_asset_strings(new_file)
-      else
-        new_file.puts line
-      end
+    File.open("#{Rails.root}/public/serviceWorker.js", 'w') do | file |
+      file = self.insert_debug_variable(file)
+      file = self.insert_cache_name(file)
+      file = self.insert_versioned_asset_strings(file)
     end
-    new_file.close
 
     self.log_message('Finished creating file')
   end
 
   def insert_versioned_asset_strings(file)
-    RailsServiceWorkerCache.configuration.assets.each_with_index do |asset, i|
+    file.puts 'var urlsToCache = ['
+    RailsServiceWorkerCache.configuration.assets.each_with_index do | asset, i |
       self.log_message("Processing assets/#{Rails.application.assets.find_asset(asset).digest_path}")
       file.puts "'  assets/#{Rails.application.assets.find_asset(asset).digest_path}'#{',' if (i+1) < RailsServiceWorkerCache.configuration.assets.length}"
     end
+    file.puts '];'
     file
   end
 
   def insert_debug_variable(file)
-    file.puts 'var debug = true' if RailsServiceWorkerCache.configuration.debug
+    file.puts 'var RSWC_DEBUG = true;' if RailsServiceWorkerCache.configuration.debug
+    file
+  end
+
+  def insert_cache_name(file)
+    file.puts "var CACHE_NAME = '#{RailsServiceWorkerCache.configuration.cache_name}';"
     file
   end
 

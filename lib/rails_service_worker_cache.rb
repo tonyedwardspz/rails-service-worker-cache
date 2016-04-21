@@ -16,10 +16,12 @@ module RailsServiceWorkerCache
   class Configuration
     attr_accessor :assets
     attr_accessor :debug
+    attr_accessor :cache_name
 
     def initialize
       @assets = []
       @debug = false
+      @cache_name = 'my-app-cache'
     end
   end
 end
