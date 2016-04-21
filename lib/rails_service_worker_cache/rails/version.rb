@@ -1,5 +1,5 @@
 module New
   module Gem
-    VERSION = '0.1.00'
+    VERSION = '0.1.4'
   end
 end
