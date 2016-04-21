@@ -1,0 +1,9 @@
+{
+  "predef": [
+    "self",
+    "console",
+    "document",
+    "caches",
+    "fetch"
+  ]
+}
