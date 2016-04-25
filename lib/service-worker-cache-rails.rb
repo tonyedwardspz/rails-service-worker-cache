@@ -1,7 +1,7 @@
 require 'service-worker-cache-rails/rails'
 require 'service-worker-cache-rails/rails/version'
-require 'service-worker-cache-rails/rails/engine' if defined?(Rails)
-require 'service-worker-cache-rails/rails/railtie' if defined?(Rails)
+require 'service-worker-cache-rails/rails/engine'
+require 'service-worker-cache-rails/rails/railtie'
 
 module ServiceWorkerCacheRails
   class << self

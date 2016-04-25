@@ -1,3 +1,8 @@
+require 'service-worker-cache-rails/rails'
+require 'service-worker-cache-rails/rails/version'
+require 'service-worker-cache-rails/rails/engine'
+require 'service-worker-cache-rails/rails/railtie'
+
 desc 'update the caching service worker file'
 task process_service_worker_cache: :environment do
   puts 'Service Worker: Task Started'
@@ -32,6 +37,8 @@ class ServiceWorker
 
   def insert_versioned_asset_strings(file)
     self.log_message("Inserting versioned asset strings")
+
+    puts "rails defined" if Rails.application.assets.present?
 
     file.puts 'var URLS_TO_CACHE = ['
     ServiceWorkerCacheRails.configuration.assets.each_with_index do | asset, i |
