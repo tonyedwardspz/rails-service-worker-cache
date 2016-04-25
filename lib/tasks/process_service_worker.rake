@@ -2,6 +2,7 @@ require 'service-worker-cache-rails/rails'
 require 'service-worker-cache-rails/rails/version'
 require 'service-worker-cache-rails/rails/engine'
 require 'service-worker-cache-rails/rails/railtie'
+require 'sprockets/manifest'
 
 desc 'update the caching service worker file'
 task process_service_worker_cache: :environment do
@@ -38,11 +39,12 @@ class ServiceWorker
   def insert_versioned_asset_strings(file)
     self.log_message("Inserting versioned asset strings")
 
-    puts "rails defined" if Rails.application.assets.present?
+    manifest_path = Dir.glob(File.join(Rails.root, 'public/assets/.sprockets-manifest-*.json')).first
+    manifest_data = JSON.load(File.new(manifest_path))
 
     file.puts 'var URLS_TO_CACHE = ['
     ServiceWorkerCacheRails.configuration.assets.each_with_index do | asset, i |
-      file.puts "  'assets/#{Rails.application.assets.find_asset(asset).digest_path}'#{',' if (i+1) < ServiceWorkerCacheRails.configuration.assets.length}"
+      file.puts "  'assets/#{manifest_data['assets'][asset]}'#{',' if (i+1) < ServiceWorkerCacheRails.configuration.assets.length}"
     end
     file.puts '];'
     file
