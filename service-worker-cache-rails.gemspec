@@ -4,7 +4,7 @@ require File.expand_path('../lib/service-worker-cache-rails/rails/version', __FI
 
 Gem::Specification.new do |s|
   s.name        = 'service-worker-cache-rails'
-  s.version     = '0.1.16'
+  s.version     = '0.1.17'
   s.date        = '2016-04-18'
   s.summary     = 'Drop in solution for caching assets using a service worker.'
   s.description = 'Drop in solution for caching assets using a service worker.'
