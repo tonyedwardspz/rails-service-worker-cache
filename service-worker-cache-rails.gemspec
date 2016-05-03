@@ -14,6 +14,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://rubygems.org/gems/service-worker-cache-rails'
   s.license     = 'MIT'
 
-  s.add_development_dependency "bundler", "~> 1.11"
+  s.add_development_dependency "bundler", "~> 1.10"
   s.add_development_dependency "rake", "~> 10.0"
 end
